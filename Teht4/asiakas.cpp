@@ -23,6 +23,7 @@ void Asiakas::showSaldo()
 
 bool Asiakas::talletus(double talletus)
 {
+
     if(talletus > 0){
 
     Pankkitili.deposit(talletus);
@@ -74,7 +75,7 @@ bool Asiakas::tiliSiirto(double nosto, Asiakas &saaja)
         saaja.talletus(nosto);
         return true;
 
-    } else {
+        } else {
 
         cout << nimi << " yrittaa tilisiirtoa mutta rahulit loppu :/" << endl;
         return false;

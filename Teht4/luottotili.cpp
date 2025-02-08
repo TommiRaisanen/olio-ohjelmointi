@@ -12,10 +12,12 @@ Luottotili::Luottotili(string n, double lr)
 bool Luottotili::withdraw(double nosto)
 {
     if(nosto <= 0){
+
         cout << "Et voi nostaa luottotililta nollaa tai negatiivisia"
              << endl;
         return false;
     }
+
     //Pankkitilin saldo ei saa mennä negatiiviseksi, elienempää ei voi nostaa kun mitä saldo on.
     if(nosto > luottoRaja){
         cout << "Et voi nostaa luottotililta enempaa kun mita raja sallii"

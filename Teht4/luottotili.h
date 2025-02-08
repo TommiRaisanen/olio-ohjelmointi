@@ -14,7 +14,6 @@ public:
 
 protected:
     double luottoRaja = 0;
-
 };
 
 #endif // LUOTTOTILI_H

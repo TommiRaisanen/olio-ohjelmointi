@@ -8,16 +8,17 @@ using namespace std;
 int main ()
 {
     int selection =0;
+    int a;
     string name;
     vector<Student>studentList;
+
     //alussa luodaan opiskelijat
-    Student a("Jonne", 12);
+
     Student b("Anne", 73);
-    Student c("Tero", 42);
+    Student c("Vesa", 42);
     Student d("Erkkari", 87);
 
 
-    studentList.push_back(a);
     studentList.push_back(b);
     studentList.push_back(c);
     studentList.push_back(d);
@@ -28,7 +29,7 @@ int main ()
     {
         cout<<endl;
         cout<<"Select"<<endl;
-        //cout<<"Add students = 0"<<endl;
+        cout<<"Add students = 0"<<endl;
         cout<<"Print all students = 1"<<endl;
         cout<<"Sort and print students according to Name = 2"<<endl;
         cout<<"Sort and print students according to Age = 3"<<endl;
@@ -37,11 +38,20 @@ int main ()
 
         switch(selection)
         {
-            // case 0:
+        case 0:
+            cout << "Uuden opiskelijan lisays. Anna nimi: ";
+            cin >> name;
+
+            cout << endl << "Opiskelijan ika: ";
+            cin >> a;
+            studentList.emplace_back(name, a);
+            cout << endl << "Opiskelija: " << name << ", " << a << " lisatty vektoriin" << endl;
             // Kysy käyttäjältä uuden opiskelijan nimi ja ikä
             // Lisää uusi student StudentList vektoriin.
             //students *s = new student
             // studentlist ->lisää (student)
+
+            break;
         case 1:
             for(Student s : studentList){
                 s.printStudentInfo();
@@ -95,11 +105,12 @@ int main ()
 
             } else {
                 cout << "Ei löytynyt";
+
                 break;
 
             }
-            }
-           break;
+        }
+        break;
             // Kysy käyttäjältä opiskelijan nimi
             // Etsi studentListan opiskelijoista algoritmikirjaston
             // find_if funktion avulla löytyykö käyttäjän antamaa nimeä
@@ -107,6 +118,7 @@ int main ()
 
 
         default:
+
             cout<< "Wrong selection, stopping..."<< endl;
             break;
 

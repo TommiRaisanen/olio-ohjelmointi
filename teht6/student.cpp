@@ -30,5 +30,5 @@ int Student::getAge()
 
 void Student::printStudentInfo()
 {
-    cout << "Student: " << Name << " Age" << Age << endl;
+    cout << "Student: " << Name << " Age " << Age << endl;
 }

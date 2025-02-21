@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/kurkkis">
+        <file>kurkkis.jpg</file>
+    </qresource>
+</RCC>

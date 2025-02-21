@@ -131,11 +131,11 @@ void MainWindow::numberClickHandler(int n)
     qDebug() << "valittu numero: " << n;
     QString str = QString::number(n);
     if (tila == 1) {
-        ui->num1->setText(str);
+        ui->num1->setText(ui->num1->text() + str);
         //laita n -> num1
 
     } else if(tila == 2){
-        ui->num2->setText(str);
+        ui->num2->setText(ui->num2->text() + str);
         //laita n -> num2
     }
 }

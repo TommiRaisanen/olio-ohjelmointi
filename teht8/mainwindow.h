@@ -45,6 +45,9 @@ private:
     QTimer *pQTimer;
 
     void updateProgressBar();
+    void updatePlayer1Time();
+    void updatePlayer2Time();
+    void endTimer();
     void setGameInfoText(QString, short);
 };
 #endif // MAINWINDOW_H

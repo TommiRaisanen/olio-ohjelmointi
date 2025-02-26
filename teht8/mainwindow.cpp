@@ -6,10 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
+
+
+
     pQTimer = new QTimer(this);
 
-
-    ui->setupUi(this);
     ui->progressBar1->setValue(0);
     ui->progressBar2->setValue(0);
 
@@ -31,6 +33,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    if(pQTimer){
+        pQTimer->stop();
+        delete pQTimer;
+        pQTimer = nullptr;
+    }
 }
 
 void MainWindow::on_startButton_clicked()
@@ -53,42 +60,45 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::on_aikaButton1_clicked() //120 sek ajastin
 {
-    tila = 1;
+    //tila = 1;
     setGameInfoText("2 min ajastin valittu. Klikkaa start game aloittaaksesi", 15);
+
+    gameTime = 10;
 
 
     ui->startButton->setEnabled(true);
-    player1Time = 120;
-    player2Time = 120;
+    player1Time = gameTime;
+    player2Time = gameTime;
 
     updatePlayer1Time();
     updatePlayer2Time();
 
-    ui->progressBar1->setRange(0,120);
-    ui->progressBar1->setValue(120);
+    ui->progressBar1->setRange(0,gameTime);
+    ui->progressBar1->setValue(gameTime);
 
-    ui->progressBar2->setRange(0,120);
-    ui->progressBar2->setValue(120);
+    ui->progressBar2->setRange(0,gameTime);
+    ui->progressBar2->setValue(gameTime);
 }
 
 void MainWindow::on_aikaButton2_clicked()
 {
     setGameInfoText("5 min ajastin valittu. Klikkaa start game aloittaaksesi", 15);
+    gameTime = 300;
+    //tila = 2;
 
-    tila = 2;
     ui->startButton->setEnabled(true);
-    player1Time = 300;
-    player2Time = 300;
+    player1Time = gameTime;
+    player2Time = gameTime;
 
     updatePlayer1Time();
     updatePlayer2Time();
 
 
-    ui->progressBar2->setRange(0,300);
-    ui->progressBar2->setValue(300);
+    ui->progressBar2->setRange(0,gameTime);
+    ui->progressBar2->setValue(gameTime);
 
-    ui->progressBar1->setRange(0,300);
-    ui->progressBar1->setValue(300);
+    ui->progressBar1->setRange(0,gameTime);
+    ui->progressBar1->setValue(gameTime);
 
 
 }
@@ -101,18 +111,19 @@ void MainWindow::timeout()
 void MainWindow::updateProgressBar()
 {
 
-    if(tila == 1 & currentPlayer == 1){
+    if(currentPlayer == 1){
         player1Time--;
         ui->progressBar1->setValue(player1Time);
-
         updatePlayer1Time();
+
     }
 
-    else if (tila == 1 & currentPlayer == 2) {
+    else if (currentPlayer == 2) {
         player2Time--;
         ui->progressBar2->setValue(player2Time);
         updatePlayer2Time();
     }
+/* nää olikin turhaa
     else if(tila == 2 & currentPlayer == 1){
         player1Time--;
         ui->progressBar1->setValue(player1Time);
@@ -124,8 +135,10 @@ void MainWindow::updateProgressBar()
         ui->progressBar2->setValue(player2Time);
         updatePlayer2Time();
     }
+*/
 
     if(player1Time == 0){
+
         endTimer();
         setGameInfoText("Pelaaja 2 voitti!", 15);
         ui->switchButton1->setEnabled(false);
@@ -151,14 +164,14 @@ void MainWindow::updateProgressBar()
 
 }
 
-void MainWindow::updatePlayer1Time()
+void MainWindow::updatePlayer1Time() //label
 {
     QString str = QString::number(player1Time);
     str.toInt();
     ui->p1Aika->setText(str);
 }
 
-void MainWindow::updatePlayer2Time()
+void MainWindow::updatePlayer2Time() //label
 {
     QString str = QString::number(player2Time);
     str.toInt();
@@ -172,14 +185,11 @@ void MainWindow::endTimer()
 
 void MainWindow::setGameInfoText(QString t, short n)
 {
-
-
     QFont font = ui->gameText->font();
     font.setPointSize(n);
 
     ui->gameText->setText(t);
-    ui->gameText->setFont(font);
-
+    ui->gameText->setFont(font);    
 }
 
 

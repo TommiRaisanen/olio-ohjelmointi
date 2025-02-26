@@ -40,7 +40,7 @@ private:
     short player2Time;
     short currentPlayer = 0;
     short gameTime;
-    short tila = 0;
+    //short tila = 0; olikin turha
 
     QTimer *pQTimer;
 

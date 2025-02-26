@@ -7,8 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
+    setFixedSize(800,600);
 
     pQTimer = new QTimer(this);
 
@@ -22,8 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->kurkkisVoittaja->setVisible(false);
     ui->kisulabelVoittaja->setVisible(false);
-
-
 
     setGameInfoText("Shakkiajastin. Valitse pelin kesto alhaalta", 15);
 
@@ -63,7 +60,7 @@ void MainWindow::on_aikaButton1_clicked() //120 sek ajastin
     //tila = 1;
     setGameInfoText("2 min ajastin valittu. Klikkaa start game aloittaaksesi", 15);
 
-    gameTime = 10;
+    gameTime = 120;
 
 
     ui->startButton->setEnabled(true);
